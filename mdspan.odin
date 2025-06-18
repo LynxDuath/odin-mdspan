@@ -34,7 +34,7 @@ reshape_in_place :: proc(span: ^$S/Span($E,$R), shape: [$L]int) -> (result: Span
 	elems := to_slice(span^)
 	// handle fill dimension
 	result.shape = shape
-	for it, i in &result.shape {
+	for &it, i in &result.shape {
 		if it < 0 {
 			it = len(elems)
 			for dim, j in &result.shape do if j != i {
@@ -58,7 +58,7 @@ reshape_out_of_place :: proc (span: $S/Span($E,$R), shape: [$L]int, allocator :=
 	elems := to_slice(span)
 	// handle fill dimension
 	result.shape = shape
-	for it, i in &result.shape {
+	for &it, i in &result.shape {
 		if it < 0 {
 			it = len(elems)
 			for dim, j in &result.shape do if j != i {

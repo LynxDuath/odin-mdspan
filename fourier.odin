@@ -1,6 +1,6 @@
 package mdspan
 
-import "core:intrinsics"
+import "base:intrinsics"
 import "core:math"
 
 fourier_transform :: proc(span: ^$S/Span($E, $R), axis := 0, inverse := false, normalize := true) where intrinsics.type_is_complex(E) {

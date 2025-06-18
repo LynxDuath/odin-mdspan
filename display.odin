@@ -20,7 +20,7 @@ wrap :: proc (span: $P/^Span($E,$R)) -> (result: Wrapped) {
 
 @private
 fmt_wrapped_span_nohash :: proc (using info: ^fmt.Info, w: Wrapped, verb: rune) {
-	for i := 0; ; {
+	for i := 0; true; {
 		trail := 1
 		j := len(w.shape) - 1
 		for ; j >= 0; j -= 1 {
@@ -50,7 +50,7 @@ fmt_wrapped_span_nohash :: proc (using info: ^fmt.Info, w: Wrapped, verb: rune) 
 
 @private
 fmt_wrapped_span_hash :: proc (using info: ^fmt.Info, w: Wrapped, verb: rune) {
-	for i := 0; ; {
+	for i := 0; true; {
 		trail := 1
 		j := len(w.shape) - 1
 		for ; j >= 0; j -= 1 {

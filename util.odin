@@ -1,7 +1,7 @@
 package mdspan
 
 @private
-@(optimization_mode="speed")
+@(optimization_mode="favor_size")
 ptr_swap_non_overlapping :: proc (a, b: rawptr, size: int) {
 	a := cast([^]u8)a
 	b := cast([^]u8)b
@@ -40,7 +40,7 @@ ptr_swap_non_overlapping :: proc (a, b: rawptr, size: int) {
 }
 
 @private
-@(optimization_mode="speed")
+@(optimization_mode="favor_size")
 ptr_copy_non_overlapping :: proc (a, b: rawptr, size: int) {
 	a := cast([^]u8)a
 	b := cast([^]u8)b
@@ -96,7 +96,7 @@ collapse_dimensions_inclusive :: proc (dims: [$N]int, axis: int) -> (leading, tr
 }
 
 @private
-@(optimization_mode="speed")
+@(optimization_mode="favor_size")
 ptr_swap_strided :: proc (a, b: rawptr, count, size, stride: int) {
 	a := cast([^]u8)a
 	b := cast([^]u8)b
@@ -106,7 +106,7 @@ ptr_swap_strided :: proc (a, b: rawptr, count, size, stride: int) {
 }
 
 @private
-@(optimization_mode="speed")
+@(optimization_mode="favor_size")
 ptr_rotate_strided :: proc (mid: rawptr, left, right: int, size, stride: int) {
 	mid := cast([^]u8)mid
 	left, right := left, right
@@ -124,7 +124,7 @@ ptr_rotate_strided :: proc (mid: rawptr, left, right: int, size, stride: int) {
 }
 
 @private
-@(optimization_mode="speed")
+@(optimization_mode="favor_size")
 ptr_rotate :: proc (mid: rawptr, left, right: int) {
 	mid := cast([^]u8)mid
 	left, right := left, right

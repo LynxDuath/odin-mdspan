@@ -28,13 +28,13 @@ rotate :: proc {
 
 transpose_monadic_in_place :: proc(span:^$S/Span($E,$R)) -> (ok: bool) {
 	perm := [R]int{}
-	for it, i in &perm {it = R - i - 1}
+	for &it, i in &perm {it = R - i - 1}
 	return transpose_dyadic_in_place(span, perm)
 }
 
 transpose_monadic_out_of_place :: proc(span:$S/Span($E,$R), allocator:=context.allocator) -> (result: Span(E,R), ok: bool) #optional_ok {
 	perm := [R]int{}
-	for it, i in &perm {it = R - i - 1}
+	for &it, i in &perm {it = R - i - 1}
 	return transpose_dyadic_out_of_place(span, perm, allocator)
 }
 

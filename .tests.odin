@@ -1,4 +1,4 @@
-//+private=file
+#+private=file
 package mdspan
 
 import test "core:testing"
@@ -53,7 +53,7 @@ to_slice_is_inverse_of_from_slice :: proc(t: ^test.T) {
 @test
 out_of_place_transposition_works :: proc (t: ^test.T) {
 	data := [4 * 5 * 7]int{}
-	for it, i in &data {it = i}
+	for &it, i in &data {it = i}
 	s := from_slice(data[:], [?]int{4, 5, 7})
 
 	// axis reversal
@@ -88,7 +88,7 @@ matrix_product_identity_is_neutral :: proc(t: ^test.T) {
 
 	{
 		r_data := [3*400]int{}
-		for it in &r_data { it = rand.int_max(1000) }
+		for &it in &r_data { it = rand.int_max(1000) }
 		r := from_slice(r_data[:], [?]int{3, -1})
 		s := to_slice(matrix_matrix_product(id, r, context.temp_allocator))
 		for i in 0 ..< len(s) {
@@ -98,7 +98,7 @@ matrix_product_identity_is_neutral :: proc(t: ^test.T) {
 
 	{
 		r_data := [3]int{}
-		for it in &r_data { it = rand.int_max(1000) }
+		for &it in &r_data { it = rand.int_max(1000) }
 		r := from_slice(r_data[:], [?]int{3})
 		s := to_slice(matrix_vector_product(id, r, context.temp_allocator))
 		for i in 0 ..< len(s) {
@@ -108,7 +108,7 @@ matrix_product_identity_is_neutral :: proc(t: ^test.T) {
 
 	{
 		r_data := [3]int{}
-		for it in &r_data { it = rand.int_max(1000) }
+		for &it in &r_data { it = rand.int_max(1000) }
 		r := from_slice(r_data[:], [?]int{3})
 		s := to_slice(vector_matrix_product(r, id, context.temp_allocator))
 		for i in 0 ..< len(s) {
@@ -120,7 +120,7 @@ matrix_product_identity_is_neutral :: proc(t: ^test.T) {
 @test
 rotations_are_permutations :: proc (t: ^test.T) {
 	data := [4 * 7 * 10]int{}
-	for it, i in &data { it = i }
+	for &it, i in &data { it = i }
 	s := from_slice(data[:], [?]int{4, 7, 10})
 	rotate(&s, array([]int{1, 2, 3, 4, 5, 6, 7}), 0)
 	// test that all elements are still present
@@ -202,7 +202,7 @@ rotate_with_bias :: proc (t: ^test.T) {
 @test
 transpositions_are_permutations :: proc (t: ^test.T) {
 	data := [4 * 7 * 10]int{}
-	for it, i in &data { it = i }
+	for &it, i in &data { it = i }
 	s := from_slice(data[:], [?]int{4, 7, 10})
 	transpose(&s, [?]int{1, 2, 0})
 	// test that all elements are still present
@@ -215,7 +215,7 @@ transpositions_are_permutations :: proc (t: ^test.T) {
 @test
 basic_reshape_functionality :: proc (t: ^test.T) {
 	data := [5 * 14] int {}
-	for it, i in &data { it = i }
+	for &it, i in &data { it = i }
 	s := from_slice(data[:], [?]int{5, 14})
 
 	{
@@ -282,7 +282,7 @@ sum_reductions_along_axes_commute :: proc (t: ^test.T) {
 		rows := test_size / cols
 	
 		data := make([]int, cols * rows); defer delete(data)
-		for elem in &data { elem = rand.int_max(1024) }
+		for &elem in &data { elem = rand.int_max(1024) }
 		expect := math.sum(data)
 		
 		arr := from_slice(data, [?]int{rows, cols})

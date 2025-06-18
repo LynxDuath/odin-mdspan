@@ -1,8 +1,8 @@
 package mdspan
 
 import "core:mem"
-import "core:runtime"
-import "core:intrinsics"
+import "base:runtime"
+import "base:intrinsics"
 import "core:simd"
 
 
@@ -108,7 +108,7 @@ reduce_add_high_rank :: proc {
 @(private="file") storeu :: intrinsics.unaligned_store
 
 @(private="file")
-@(optimization_mode="size")
+@(optimization_mode="favor_size")
 _reduce_add_middle_with_cast :: #force_no_inline proc "contextless" (
 	dest:     [^]$T,
 	source:   [^]$E,
@@ -188,7 +188,7 @@ aligned_down :: proc "contextless" (p: $P/[^]$T, $Align: uintptr) -> P {
 }
 
 @(private="file")
-@(optimization_mode = "size")
+@(optimization_mode = "favor_size")
 _reduce_add_trailing_with_cast :: #force_no_inline proc "contextless" (
 	dest:     [^]$T,
 	source:   [^]$E,

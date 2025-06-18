@@ -1,6 +1,10 @@
 # Odin-MDSpan
 A multi dimensional array library for the Odin programming language
 
+My personal fork to fix some warnings and errors in my current version of Odin (dev-2025-06:591271800), since the original author ap29600 hasn't continued development for 2 years now.
+I will not continue development, just fix errors happening to my own projects.
+Most notably, I disabled the tests.odin file.
+
 ### What's a multi dimensional array?
 A collection of elements arranged along an arbitrary number of axes. This number
 is the array's `rank`.
